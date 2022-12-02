@@ -27,8 +27,7 @@
         };
     };
    
-   {
-    macros {
+   macros {
         alt_ctrl_del: alt_ctrl_del {
             label = "MACRO_alt_ctrl_del";
             compatible = "zmk,behavior-macro";
@@ -41,7 +40,6 @@
         };
     };
     
-    {
     macros {
         move_to_other_monitor: move_to_other_monitor {
             label = "MACRO_move_to_other_monitor";
@@ -55,7 +53,6 @@
         };
     };
     
-    {
     macros {
         snipping_tool: snipping_tool {
             label = "MACRO_snipping_tool";
@@ -68,7 +65,6 @@
                 ;
         };
     };
-};
 
     keymap {
         compatible = "zmk,keymap";
