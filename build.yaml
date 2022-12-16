@@ -4,3 +4,8 @@ include:
     board: nrfmicro@1.4.0
   - shield: sofle_right
     board: nrfmicro@1.4.0
+    
+  - shield: corne_left
+    board: nrfmicro@1.4.0
+  - shield: corne_right
+    board: nrfmicro@1.4.0
