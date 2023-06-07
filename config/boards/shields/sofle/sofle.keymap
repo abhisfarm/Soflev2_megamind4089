@@ -71,9 +71,7 @@
                 , <&macro_release &kp LCTRL &kp LALT>
                 ;
         };
-    };
-	
-	macros {
+    
         beyond_compare: beyond_compare {
             label = "MACRO_beyond_compare";
             compatible = "zmk,behavior-macro";
@@ -84,9 +82,7 @@
                 , <&macro_release &kp LCTRL &kp LALT>
                 ;
         };
-    };
-	
-	macros {
+   
         control_home: control_home {
             label = "MACRO_control_home";
             compatible = "zmk,behavior-macro";
@@ -97,9 +93,7 @@
                 , <&macro_release &kp LCTRL>
                 ;
         };
-    };
-	
-	macros {
+    
         control_end: control_end {
             label = "MACRO_control_end";
             compatible = "zmk,behavior-macro";
