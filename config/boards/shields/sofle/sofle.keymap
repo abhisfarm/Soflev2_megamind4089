@@ -104,6 +104,40 @@
                 , <&macro_release &kp LCTRL>
                 ;
         };
+		
+		slp: slp {
+            label = "SLEEP";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI>
+                , <&macro_tap &kp X>
+                , <&macro_release &kp LGUI>
+                , <&macro_tap &kp U &kp S>
+                ;
+        };
+        rst: rst {
+            label = "RESTART";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI>
+                , <&macro_tap &kp X>
+                , <&macro_release &kp LGUI>
+                , <&macro_tap &kp U &kp R>
+                ;
+        };
+        off: off {
+            label = "SHUTDOWN";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI>
+                , <&macro_tap &kp X>
+                , <&macro_release &kp LGUI>
+                , <&macro_tap &kp U &kp U>
+                ;
+        };
     };
 	
 	keymap {
@@ -135,7 +169,7 @@
             // |     |   1 |   2 |   3  |   4  |   5  |                   |   6  |   7   |   8   |   9  |    0  |  F12  |
             // |     |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |   |   |
             // |CTRL |  =  |  -  |  +   |  {   |  }   |        |  |       |  [   |  ]    |  ;    |  :   |   \   |       |
-            //             |     |      |      |      | RAISE  |  |       |      | DEL   | HOME  | SNIP |			
+            //             |     |      |      |      | ADJUST |  |       |      | DEL   | HOME  | SNIP |			
 			
 			bindings = <
  &kp GRAVE     &kp F1     &kp F2       &kp F3    &kp F4     &kp F5                     &kp F6    &kp F7           &kp F8     &kp F9   &kp F10   &kp F11
@@ -150,36 +184,37 @@
 
         raise_layer {
             // ------------------------------------------------------------------------------------------------------------
-            // | `   |  F1  |  F2  |  F3   |  F4   |  F5  |		           | CAD  |      |       |      |       |       |
-            // |     |   1  |   2  |   3   |   4   |   5  |                | HOME |BKSPC |  DEL  |      |       |       |
+            // | `   |  F1  |  F2  |  F3   |  F4   |  F5  |		           | CAD  |      |       |      |       |   =   |
+            // |     |   1  |   2  |   3   |   4   |   5  |                | HOME |BKSPC |  DEL  |      |       |   ]   |
             // |     |  !   |  @   |  #    |  $    |  %   |                |  <-  |  v   |   ^   |  ->  |       |       |
             // |CTRL |  =   |  -   |  +    |  {    |  }   |      |  |      | WSR  |  DB  |  BC   |  DE  |       |       |
-            //              |      |       |       |      |      |  |LOWER |      |      |       |  FSC |
+            //              |      |       |       |      |      |  |ADJUST|      |      |       |  FSC |
 
             bindings = <
  &kp GRAVE     &kp F1     &kp F2       &kp F3    &kp F4     &kp F5                 &alt_ctrl_del &trans    &trans     &trans   &trans          &kp EQUAL
      &trans     &kp N1     &kp N2       &kp N3    &kp N4     &kp N5                     &kp HOME   &kp BSPC  &kp DEL     &trans   &kp N0  &kp RIGHT_BRACKET
      &trans   &kp EXCL     &kp AT     &kp HASH  &kp DLLR  &kp PRCNT                    &kp LEFT   &kp DOWN  &kp UP  &kp RIGHT  &trans            &trans
     &kp LCTRL    &kp K_UNDO   &kp K_CUT    &kp K_COPY    &kp K_PASTE      &trans  &trans  &trans &move_to_other_monitor &control_home &beyond_compare &control_end   &trans             &trans
-                                 &trans        &trans        &trans        &trans  &trans  &mo 1     &trans    &trans    &trans   &faststone_capture
+                                 &trans        &trans        &trans        &trans  &trans  
+								 &mo 1     &trans    &trans    &trans   &faststone_capture
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
         // ------------------------------------------------------------------------------------------------------------
-        // |BTCLR | BT1   | BT2   |  BT3  |  BT4  |  BT5  |                |      |      |       |      |       |       |
-        // |EXTPWR|RGB_HUD|RGB_HUI|RGB_SAD|RGB_SAI|RGB_EFF|                |      |      |       |      |       |       |
-        // |      |RGB_BRD|RGB_BRI|       |       |       |                |      |      |       |      |       |       |
-        // |      |       |       |       |       |       |RGB_TOG| |      |      |      |       |      |       |       |
+        // |BTCLR | BT1   | BT2   |  BT3  |  BT4  |  BT5  |                | CAD  |      |       |      |       | SLEEP |
+        // |EXTPWR|RGB_HUD|RGB_HUI|RGB_SAD|RGB_SAI|RGB_EFF|                | HOME |BKSPC |  DEL  |      |       |RESTART|
+        // |      |RGB_BRD|RGB_BRI|       |       |       |                |  <-  |  v   |   ^   |  ->  |       |  SHUT |
+        // |      |       |       |       |       |       |RGB_TOG| |      | WSR  |  DB  |  BC   |  DE  |       |       |
         //                |       |       |       |       |       | |      |      |      |       |      |
 
         Adjust_layer {
             bindings = <
-                      &bt BT_CLR     &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                            &none   &none   &none   &none   &none   &none
- &ext_power EXT_POWER_TOGGLE_CMD  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_EFF                            &none   &none   &none   &none   &none   &none
-                           &none  &rgb_ug RGB_BRD  &rgb_ug RGB_BRI            &none            &none            &none                            &none   &none   &none   &none   &none   &none
-                           &none            &none            &none            &none            &none            &none  &rgb_ug RGB_TOG   &none   &none   &none   &none   &none   &none   &none
+                      &bt BT_CLR     &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                            &alt_ctrl_del &trans    &trans     &trans   &trans          &slp
+ &ext_power EXT_POWER_TOGGLE_CMD  &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &rgb_ug RGB_EFF                            &kp HOME   &kp BSPC  &kp DEL     &trans   &kp N0  &rst
+                           &none  &rgb_ug RGB_BRD  &rgb_ug RGB_BRI            &none            &none            &none                            &kp LEFT   &kp DOWN  &kp UP  &kp RIGHT  &trans            &off
+                           &none            &none            &none            &none            &none            &none  &rgb_ug RGB_TOG   &trans &move_to_other_monitor &control_home &beyond_compare &control_end   &trans &trans
                                                              &none            &none            &none            &none            &none   &none   &none   &none   &none   &none
             >;
         };
